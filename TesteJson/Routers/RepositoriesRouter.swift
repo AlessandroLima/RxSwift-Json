@@ -12,14 +12,18 @@ import UIKit
 protocol RepositoriesRouterProtocol {
     func list()
 }
+protocol RxRepositoriesRouterProtocol {
+    func listRx()
+}
 
 
-class RepositoriesRouter: UINavigationController, RepositoriesRouterProtocol {
+class RepositoriesRouter: UINavigationController, RepositoriesRouterProtocol,RxRepositoriesRouterProtocol {
     
     // MARK: Properties
     
     var window: UIWindow?
     var repositoriesViewController:RepositoriesViewController?
+    var rxRepositoriesViewController:RxRepositoriesViewController?
     
     // MARK: Initializers
     
@@ -38,6 +42,20 @@ class RepositoriesRouter: UINavigationController, RepositoriesRouterProtocol {
             repositoriesViewController.navigationItem.title = "Repositórios"
             repositoriesViewController.title = "Repositórios"
             viewControllers = [repositoriesViewController]
+        }
+        
+        if let window = window {
+            window.rootViewController = self
+        }
+    }
+    
+    func listRx() {
+        
+        rxRepositoriesViewController = RxRepositoriesViewController()
+        if let rxRepositoriesViewController = rxRepositoriesViewController {
+            rxRepositoriesViewController.navigationItem.title = "Repositórios"
+            rxRepositoriesViewController.title = "Repositórios"
+            viewControllers = [rxRepositoriesViewController]
         }
         
         if let window = window {

@@ -12,7 +12,7 @@ class RepositoriesViewController: UIViewController, UISearchBarDelegate {
     
     //MARK: Outlets
     @IBOutlet weak var tableView:UITableView!
-    @IBOutlet weak var txtSearch: UISearchBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var viLoad: UIView!
     @IBOutlet weak var aiLoad: UIActivityIndicatorView!
     
@@ -23,13 +23,15 @@ class RepositoriesViewController: UIViewController, UISearchBarDelegate {
     let cellIdentifier = "cell"
     
     
+    
+    
     //MARK: ViewFunctions
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.dataSource = self
         tableView.delegate = self
-        txtSearch.delegate = self
+        searchBar.delegate = self
         loadRepositories(language: "")
         
         tableView.register(UINib(nibName: "RepositoriesTableViewCell", bundle: nil), forCellReuseIdentifier: cellIdentifier)
@@ -44,18 +46,18 @@ class RepositoriesViewController: UIViewController, UISearchBarDelegate {
     
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        txtSearch.resignFirstResponder()
-        txtSearch.text = ""
+        searchBar.resignFirstResponder()
+        searchBar.text = ""
     }
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        if let text = txtSearch.text{
+        if let text = searchBar.text{
             setload(true)
             loadRepositories(language: text)
         }
-        txtSearch.resignFirstResponder()
+        searchBar.resignFirstResponder()
     }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        txtSearch.text = ""
+        searchBar.text = ""
     }
 }
 

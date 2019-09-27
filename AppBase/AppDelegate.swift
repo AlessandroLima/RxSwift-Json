@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         mainRouter = RepositoriesRouter(window: window)
         
         if let mainRouter = mainRouter{
-            mainRouter.list()
+            mainRouter.listRx()
         }
         
         return true
